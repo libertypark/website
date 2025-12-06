@@ -8,15 +8,7 @@ import { Button } from "@/components/ui/button";
 const HomePage = () => {
   return (
     <div className="container mx-auto p-4">
-      <div className="text-center py-12 bg-gray-50 text-gray-800 rounded-lg shadow-lg mb-12">
-        <h1 className="text-5xl font-extrabold mb-4">Welcome to Liberty Park Owners Association</h1>
-        <p className="text-xl mb-6 max-w-2xl mx-auto">
-          Your central hub for community information, important documents, and announcements.
-        </p>
-        <Button asChild size="lg" className="bg-blue-600 text-white hover:bg-blue-700">
-          <Link to="/announcements">View Latest Announcements</Link>
-        </Button>
-      </div>
+      {/* The welcome banner card has been removed */}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <Card className="text-center p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
