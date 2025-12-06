@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 
 const Header = () => {
   return (
-    <header className="bg-indigo-700 text-primary-foreground p-4 shadow-md">
+    <header className="bg-primary text-primary-foreground p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold">
           Liberty Park Owners Association
