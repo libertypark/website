@@ -8,7 +8,7 @@ const Footer = () => {
     <footer className="bg-secondary text-secondary-foreground p-4 text-center mt-8">
       <div className="container mx-auto">
         <p className="text-sm mb-2">
-          &copy; {new Date().getFullYear()} HOA Connect. All rights reserved.
+          &copy; {new Date().getFullYear()} Liberty Park Owners Association. All rights reserved.
         </p>
         <MadeWithDyad />
       </div>

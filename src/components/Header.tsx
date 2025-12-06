@@ -9,7 +9,7 @@ const Header = () => {
     <header className="bg-primary text-primary-foreground p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
         <Link to="/" className="text-2xl font-bold">
-          HOA Connect
+          Liberty Park Owners Association
         </Link>
         <nav className="space-x-4">
           <Button variant="ghost" asChild>
