@@ -8,12 +8,12 @@ import { Button } from "@/components/ui/button";
 const HomePage = () => {
   return (
     <div className="container mx-auto p-4">
-      <div className="text-center py-12 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg shadow-lg mb-12">
+      <div className="text-center py-12 bg-gray-50 text-gray-800 rounded-lg shadow-lg mb-12">
         <h1 className="text-5xl font-extrabold mb-4">Welcome to Liberty Park Owners Association</h1>
         <p className="text-xl mb-6 max-w-2xl mx-auto">
           Your central hub for community information, important documents, and announcements.
         </p>
-        <Button asChild size="lg" className="bg-white text-blue-600 hover:bg-gray-100">
+        <Button asChild size="lg" className="bg-blue-600 text-white hover:bg-blue-700">
           <Link to="/announcements">View Latest Announcements</Link>
         </Button>
       </div>
