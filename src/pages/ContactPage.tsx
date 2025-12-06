@@ -28,20 +28,7 @@ const ContactPage = () => {
           </CardContent>
         </Card>
 
-        <Card className="text-center p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-          <CardHeader>
-            <Phone className="h-12 w-12 text-purple-500 mx-auto mb-4" />
-            <CardTitle className="text-2xl font-semibold">Call Us</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg text-gray-700">
-              For urgent matters, please call:
-            </p>
-            <a href="tel:+15551234567" className="text-blue-600 hover:underline font-medium">
-              (555) 123-4567
-            </a>
-          </CardContent>
-        </Card>
+        {/* Removed "Call Us" card */}
 
         <Card className="text-center p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
           <CardHeader>
