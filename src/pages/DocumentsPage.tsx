@@ -10,7 +10,7 @@ const DocumentsPage = () => {
     { id: 1, title: "HOA Bylaws", description: "Official rules and regulations of the association.", date: "2023-01-15", link: "#" },
     { id: 2, title: "Annual Meeting Minutes 2023", description: "Summary of discussions and decisions from the annual meeting.", date: "2023-11-20", link: "#" },
     { id: 3, title: "Architectural Guidelines", description: "Guidelines for exterior modifications and improvements.", date: "2022-07-01", link: "#" },
-    { id: 4, title: "CC&Rs and Architectural Control Standards", description: "Covenants, Conditions, & Restrictions and Architectural Control Standards.", date: "2024-03-10", link: "#" },
+    { id: 4, title: "CC&Rs and Architectural Control Standards", description: "Covenants, Conditions, & Restrictions and Architectural Control Standards.", date: "2024-03-10", link: "/ccrs-architectural-standards.pdf" }, // Updated link
   ];
 
   return (
