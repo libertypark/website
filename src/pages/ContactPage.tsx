@@ -30,22 +30,7 @@ const ContactPage = () => {
 
         {/* Removed "Call Us" card */}
 
-        <Card className="text-center p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
-          <CardHeader>
-            <MapPin className="h-12 w-12 text-orange-500 mx-auto mb-4" />
-            <CardTitle className="text-2xl font-semibold">Our Office</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-lg text-gray-700">
-              Visit us at our community office:
-            </p>
-            <p className="text-blue-600 font-medium">
-              123 Community Lane, Suite 100
-              <br />
-              Anytown, CA 90210
-            </p>
-          </CardContent>
-        </Card>
+        {/* Removed "Our Office" card */}
       </div>
     </div>
   );
