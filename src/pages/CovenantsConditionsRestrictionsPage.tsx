@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
-const RulesAndRegulationsPage = () => {
+const CovenantsConditionsRestrictionsPage = () => {
   const embedSrc = "https://workdrive.zohoexternal.com/embed/uoy3hac2ac896a90d404fa9b3a84293d01495?toolbar=false&appearance=light&themecolor=green";
 
   return (
@@ -17,7 +17,7 @@ const RulesAndRegulationsPage = () => {
           </Link>
         </Button>
       </div>
-      <h1 className="text-4xl font-bold text-center mb-8">Liberty Park Rules and Regulations</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">Liberty Park Covenants, Conditions, and Restrictions (CC&Rs)</h1>
       <div className="w-full max-w-4xl aspect-video bg-gray-100 rounded-lg shadow-lg overflow-hidden">
         <iframe
           src={embedSrc}
@@ -25,11 +25,11 @@ const RulesAndRegulationsPage = () => {
           frameBorder="0"
           allowFullScreen={true}
           className="w-full h-full"
-          title="Liberty Park Rules and Regulations"
+          title="Liberty Park Covenants, Conditions, and Restrictions (CC&Rs)"
         ></iframe>
       </div>
     </div>
   );
 };
 
-export default RulesAndRegulationsPage;
+export default CovenantsConditionsRestrictionsPage;
