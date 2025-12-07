@@ -12,7 +12,7 @@ const AnnouncementsPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold text-center mb-8">Announcements</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">Community Announcements</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {announcements.map((announcement) => (
@@ -45,6 +45,28 @@ const AnnouncementsPage = () => {
                 <BookOpen className="mr-2 h-4 w-4" /> View Document
               </Link>
             </Button>
+          </CardContent>
+        </Card>
+        
+        {/* New Embedded Document Card */}
+        <Card className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
+          <CardContent className="flex flex-col p-6">
+            <div className="flex items-center space-x-4 mb-4">
+              <BookOpen className="h-8 w-8 text-purple-500" />
+              <div>
+                <CardTitle className="text-xl font-semibold">Meeting Minutes</CardTitle>
+              </div>
+            </div>
+            <div className="w-full aspect-video bg-gray-100 rounded-lg shadow-lg overflow-hidden mb-4">
+              <iframe 
+                src="https://workdrive.zohoexternal.com/embed/kccpxb8d2195b66bc4d808a187fb532366a56?toolbar=false&appearance=light&themecolor=green" 
+                scrolling="no" 
+                frameBorder="0" 
+                allowFullScreen={true}
+                className="w-full h-full"
+                title="Meeting Minutes"
+              ></iframe>
+            </div>
           </CardContent>
         </Card>
       </div>
