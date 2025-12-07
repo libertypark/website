@@ -2,12 +2,14 @@
 
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Download } from "lucide-react";
+import { FileText, Download, BookOpen } from "lucide-react"; // Added BookOpen icon
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom"; // Import Link
 
 const DocumentsPage = () => {
   const documents = [
-    { id: 4, title: "CC&Rs and Architectural Control Standards", description: "Covenants, Conditions, & Restrictions and Architectural Control Standards.", date: "2024-03-10", link: "/Liberty Park CCRs and Architectural Control Standards.pdf" },
+    { id: 4, title: "CC&Rs and Architectural Control Standards", description: "Covenants, Conditions, & Restrictions and Architectural Control Standards.", date: "2024-03-10", link: "/Liberty Park CCRs and Architectural Control Standards.pdf", type: "download" },
+    { id: 5, title: "Liberty Park Bylaws", description: "Official bylaws governing the Liberty Park Owners Association.", date: "2023-01-15", link: "/documents/bylaws", type: "view" }, // New document entry
   ];
 
   return (
@@ -21,7 +23,11 @@ const DocumentsPage = () => {
         {documents.map((doc) => (
           <Card key={doc.id} className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
             <CardHeader className="flex flex-row items-center space-x-4">
-              <FileText className="h-8 w-8 text-blue-500" />
+              {doc.type === "download" ? (
+                <FileText className="h-8 w-8 text-blue-500" />
+              ) : (
+                <BookOpen className="h-8 w-8 text-purple-500" /> // Use BookOpen for viewable document
+              )}
               <div>
                 <CardTitle className="text-xl font-semibold">{doc.title}</CardTitle>
                 <CardDescription className="text-sm text-gray-500">Published: {doc.date}</CardDescription>
@@ -29,11 +35,19 @@ const DocumentsPage = () => {
             </CardHeader>
             <CardContent>
               <p className="text-gray-700 mb-4">{doc.description}</p>
-              <Button asChild className="w-full">
-                <a href={doc.link} download>
-                  <Download className="mr-2 h-4 w-4" /> Download
-                </a>
-              </Button>
+              {doc.type === "download" ? (
+                <Button asChild className="w-full">
+                  <a href={doc.link} download>
+                    <Download className="mr-2 h-4 w-4" /> Download
+                  </a>
+                </Button>
+              ) : (
+                <Button asChild className="w-full">
+                  <Link to={doc.link}>
+                    <BookOpen className="mr-2 h-4 w-4" /> View Document
+                  </Link>
+                </Button>
+              )}
             </CardContent>
           </Card>
         ))}

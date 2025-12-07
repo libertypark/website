@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage"; // Renamed from Index
 import DocumentsPage from "./pages/DocumentsPage";
 import AnnouncementsPage from "./pages/AnnouncementsPage";
 import ContactPage from "./pages/ContactPage";
+import EmbeddedDocumentPage from "./pages/EmbeddedDocumentPage"; // New import
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -29,6 +30,7 @@ const App = () => (
               <Route path="/documents" element={<DocumentsPage />} />
               <Route path="/announcements" element={<AnnouncementsPage />} />
               <Route path="/contact" element={<ContactPage />} />
+              <Route path="/documents/bylaws" element={<EmbeddedDocumentPage />} /> {/* New route */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
