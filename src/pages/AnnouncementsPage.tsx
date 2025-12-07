@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { Megaphone, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -36,36 +36,34 @@ const AnnouncementsPage = () => {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {announcements.map((announcement) => (
-          <Card key={announcement.id} className="shadow-md hover:shadow-lg transition-shadow duration-300">
-            <CardHeader className="flex flex-row items-center space-x-4">
+          <Card key={announcement.id} className="shadow-md hover:shadow-lg transition-shadow duration-300 p-6">
+            <div className="flex flex-row items-center space-x-4 mb-2">
               <Megaphone className="h-8 w-8 text-green-500" />
               <div>
                 <CardTitle className="text-xl font-semibold">{announcement.title}</CardTitle>
                 <CardDescription className="text-sm text-gray-500">Posted: {announcement.date}</CardDescription>
               </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-700">{announcement.content}</p>
-            </CardContent>
+            </div>
+            <p className="text-gray-700">{announcement.content}</p>
           </Card>
         ))}
         
         {/* Updated Embedded Document Card */}
         <Card className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
-          <CardContent className="flex flex-col p-6">
+          <div className="flex flex-col p-6">
             <div className="flex items-center space-x-4 mb-4">
               <BookOpen className="h-8 w-8 text-purple-500" />
               <div>
                 <CardTitle className="text-xl font-semibold">2025 Special Assessment</CardTitle>
               </div>
             </div>
-            <p className="text-gray-700 mb-4 flex-grow">View details about the 2025 special assessment for retention pond and dispersion trench.</p>
+            <p className="text-gray-700 mb-4 flex-grow">View details about the 2025 special assessment for community improvements.</p>
             <Button asChild className="w-full mt-auto">
               <Link to="/announcements/special-assessment">
                 <BookOpen className="mr-2 h-4 w-4" /> View Document
               </Link>
             </Button>
-          </CardContent>
+          </div>
         </Card>
       </div>
     </div>
