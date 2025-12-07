@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 
 const EmbeddedDocumentPage = () => {
-  const embedSrc = "https://workdrive.zohoexternal.com/embed/uoy3hd3158b1339024b3396cac2fca9c08948?toolbar=false&appearance=light&themecolor=green";
+  const embedSrc = "https://workdrive.zohoexternal.com/embed/uoy3h11111111111111111111111111111111?toolbar=false&appearance=light&themecolor=green"; // Assuming this is the bylaws embed link
 
   return (
     <div className="container mx-auto p-4 flex flex-col items-center">
@@ -17,8 +17,7 @@ const EmbeddedDocumentPage = () => {
           </Link>
         </Button>
       </div>
-      <h1 className="text-4xl font-bold text-center mb-8">Liberty Park Bylaws</h1>
-      {/* Removed the descriptive paragraph */}
+      <h1 className="text-4xl font-bold text-center mb-8">First Amendment to Declaration of Covenants</h1>
       <div className="w-full max-w-4xl aspect-video bg-gray-100 rounded-lg shadow-lg overflow-hidden">
         <iframe
           src={embedSrc}
@@ -26,7 +25,7 @@ const EmbeddedDocumentPage = () => {
           frameBorder="0"
           allowFullScreen={true}
           className="w-full h-full"
-          title="Liberty Park Bylaws"
+          title="First Amendment to Declaration of Covenants"
         ></iframe>
       </div>
     </div>
