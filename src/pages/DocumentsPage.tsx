@@ -2,23 +2,20 @@
 
 import React from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { FileText, Download, BookOpen } from "lucide-react"; // Added BookOpen icon
+import { FileText, Download, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
 
 const DocumentsPage = () => {
   const documents = [
     { id: 4, title: "CC&Rs and Architectural Control Standards", description: "Covenants, Conditions, & Restrictions and Architectural Control Standards.", date: "2024-03-10", link: "/Liberty Park CCRs and Architectural Control Standards.pdf", type: "download" },
     { id: 5, title: "Liberty Park Bylaws", description: "Official bylaws governing the Liberty Park Owners Association.", date: "2023-01-15", link: "/documents/bylaws", type: "view" },
-    { id: 6, title: "Liberty Park Rules and Regulations", description: "Official rules and regulations for Liberty Park residents.", date: "2024-01-01", link: "/documents/rules-and-regulations", type: "view" }, // New document entry
+    { id: 6, title: "Liberty Park Rules and Regulations", description: "Official rules and regulations for Liberty Park residents.", date: "2024-01-01", link: "/documents/rules-and-regulations", type: "view" },
   ];
 
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-bold text-center mb-8">Community Documents</h1>
-      <p className="text-lg text-center text-muted-foreground mb-10">
-        Here you can find all important documents related to our Homeowners Association.
-      </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {documents.map((doc) => (
