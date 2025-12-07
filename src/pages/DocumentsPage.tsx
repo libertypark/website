@@ -28,7 +28,7 @@ const DocumentsPage = () => {
                 )}
                 <div>
                   <CardTitle className="text-xl font-semibold">{doc.title}</CardTitle>
-                  <CardDescription className="text-sm text-gray-500">Published: {doc.date}</CardDescription>
+                  {/* Removed CardDescription with published date */}
                 </div>
               </div>
               <p className="text-gray-700 mb-4 flex-grow">{doc.description}</p>
