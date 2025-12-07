@@ -8,13 +8,6 @@ import { Link } from "react-router-dom";
 const AnnouncementsPage = () => {
   const announcements = [
     {
-      id: 1,
-      title: "Annual Community BBQ & Potluck",
-      date: "October 26, 2024",
-      content:
-        "Join us for our annual community BBQ and potluck! Bring your favorite dish to share and enjoy an evening of fun, food, and neighborly camaraderie at the community park. Festivities begin at 5 PM.",
-    },
-    {
       id: 2,
       title: "Street Sweeping Schedule Update",
       date: "October 10, 2024",
