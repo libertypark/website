@@ -57,7 +57,7 @@ const AnnouncementsPage = () => {
                 <CardTitle className="text-xl font-semibold">2025 Annual Meeting</CardTitle>
               </div>
             </div>
-            <p className="text-gray-700 mb-4 flex-grow">View the minutes and details from the 2025 annual community meeting.</p>
+            <p className="text-gray-700 mb-4 flex-grow">View details about the 2025 annual meeting.</p>
             <Button asChild className="w-full mt-auto">
               <Link to="/announcements/annual-meeting">
                 <BookOpen className="mr-2 h-4 w-4" /> View Document
