@@ -30,16 +30,16 @@ const AnnouncementsPage = () => {
           </Card>
         ))}
         
-        {/* October 2025 Special Assessment Update Card */}
+        {/* October 2025 Update Card */}
         <Card className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
           <CardContent className="flex flex-col p-6">
             <div className="flex items-center space-x-4 mb-4">
               <BookOpen className="h-8 w-8 text-purple-500" />
               <div>
-                <CardTitle className="text-xl font-semibold">October 2025 Special Assessment Update</CardTitle>
+                <CardTitle className="text-xl font-semibold">October 2025 Update</CardTitle>
               </div>
             </div>
-            <p className="text-gray-700 mb-4 flex-grow">View the update on the October 2025 special assessment.</p>
+            <p className="text-gray-700 mb-4 flex-grow">View the October 2025 community update.</p>
             <Button asChild className="w-full mt-auto">
               <Link to="/announcements/meeting-minutes">
                 <BookOpen className="mr-2 h-4 w-4" /> View Document

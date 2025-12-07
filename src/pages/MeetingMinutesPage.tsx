@@ -17,7 +17,7 @@ const MeetingMinutesPage = () => {
           </Link>
         </Button>
       </div>
-      <h1 className="text-4xl font-bold text-center mb-8">October 2025 Special Assessment Update</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">October 2025 Update</h1>
       <div className="w-full max-w-4xl aspect-video bg-gray-100 rounded-lg shadow-lg overflow-hidden">
         <iframe
           src={embedSrc}
@@ -25,7 +25,7 @@ const MeetingMinutesPage = () => {
           frameBorder="0"
           allowFullScreen={true}
           className="w-full h-full"
-          title="October 2025 Special Assessment Update"
+          title="October 2025 Update"
         ></iframe>
       </div>
     </div>
