@@ -17,7 +17,7 @@ const CovenantsConditionsRestrictionsPage = () => {
           </Link>
         </Button>
       </div>
-      <h1 className="text-4xl font-bold text-center mb-8">Liberty Park Covenants, Conditions, and Restrictions (CC&Rs)</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">Liberty Park Owners Association Covenants, Conditions, and Restrictions (CC&Rs) and Architectural Control Standards</h1>
       <div className="w-full max-w-4xl aspect-video bg-gray-100 rounded-lg shadow-lg overflow-hidden">
         <iframe
           src={embedSrc}
@@ -25,7 +25,7 @@ const CovenantsConditionsRestrictionsPage = () => {
           frameBorder="0"
           allowFullScreen={true}
           className="w-full h-full"
-          title="Liberty Park Covenants, Conditions, and Restrictions (CC&Rs)"
+          title="Liberty Park Owners Association Covenants, Conditions, and Restrictions (CC&Rs) and Architectural Control Standards"
         ></iframe>
       </div>
     </div>
