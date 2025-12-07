@@ -22,7 +22,7 @@ const Header = () => {
             <Link to="/announcements">Announcements</Link>
           </Button>
           <Button variant="ghost" asChild className="hover:bg-gray-200 text-gray-800">
-            <Link to="/contact">Contact</Link>
+            <Link to="/contact">Contacts</Link>
           </Button>
         </nav>
       </div>
