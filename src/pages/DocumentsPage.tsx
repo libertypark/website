@@ -10,6 +10,7 @@ const DocumentsPage = () => {
   const documents = [
     { id: 5, title: "Liberty Park Bylaws", description: "Official bylaws governing the Liberty Park Owners Association.", date: "2025-12-01", link: "/documents/bylaws", type: "view" },
     { id: 6, title: "Liberty Park Owners Association Covenants, Conditions, and Restrictions (CC&Rs) and Architectural Control Standards", description: "Official covenants, conditions, restrictions, and architectural control standards for Liberty Park residents.", date: "2025-12-01", link: "/documents/ccrs", type: "view" },
+    { id: 7, title: "Liberty Park Architectural Control Standards", description: "Detailed standards and guidelines for architectural changes and improvements within Liberty Park.", date: "2025-12-01", link: "/documents/architectural-standards", type: "view" }, // New document
   ];
 
   return (
