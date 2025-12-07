@@ -17,7 +17,7 @@ const ArchitecturalControlStandardsPage = () => {
           </Link>
         </Button>
       </div>
-      <h1 className="text-4xl font-bold text-center mb-8">Liberty Park Architectural Control Standards</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">First Amendment to Declaration of Covenants</h1>
       <div className="w-full max-w-4xl aspect-video bg-gray-100 rounded-lg shadow-lg overflow-hidden">
         <iframe
           src={embedSrc}
