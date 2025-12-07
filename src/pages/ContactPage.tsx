@@ -23,9 +23,7 @@ const ContactPage = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-bold text-center mb-8">Contact Us</h1>
-      <p className="text-lg text-center text-muted-foreground mb-10">
-        Reach out to the Liberty Park Owners Association board members.
-      </p>
+      {/* Removed the descriptive paragraph */}
 
       <div className="grid grid-cols-1 gap-6 justify-center">
         <Card className="p-6 shadow-md hover:shadow-lg transition-shadow duration-300 max-w-2xl mx-auto w-full">
