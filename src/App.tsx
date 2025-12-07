@@ -12,6 +12,7 @@ import EmbeddedDocumentPage from "./pages/EmbeddedDocumentPage";
 import CovenantsConditionsRestrictionsPage from "./pages/CovenantsConditionsRestrictionsPage"; // Updated import
 import ArchitecturalControlStandardsPage from "./pages/ArchitecturalControlStandardsPage"; // New import
 import SpecialAssessmentPage from "./pages/MeetingMinutesPage"; // Updated import
+import AnnualMeetingPage from "./pages/AnnualMeetingPage"; // New import for Annual Meeting
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -34,7 +35,8 @@ const App = () => (
               <Route path="/documents/bylaws" element={<EmbeddedDocumentPage />} />
               <Route path="/documents/ccrs" element={<CovenantsConditionsRestrictionsPage />} />
               <Route path="/documents/architectural-standards" element={<ArchitecturalControlStandardsPage />} />
-              <Route path="/announcements/special-assessment" element={<SpecialAssessmentPage />} /> {/* Updated route */}
+              <Route path="/announcements/special-assessment" element={<SpecialAssessmentPage />} />
+              <Route path="/announcements/annual-meeting" element={<AnnualMeetingPage />} /> {/* New route */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
