@@ -18,9 +18,7 @@ const EmbeddedDocumentPage = () => {
         </Button>
       </div>
       <h1 className="text-4xl font-bold text-center mb-8">Liberty Park Bylaws</h1>
-      <p className="text-lg text-center text-muted-foreground mb-10">
-        View the official Liberty Park Bylaws directly in your browser.
-      </p>
+      {/* Removed the descriptive paragraph */}
       <div className="w-full max-w-4xl aspect-video bg-gray-100 rounded-lg shadow-lg overflow-hidden">
         <iframe
           src={embedSrc}
