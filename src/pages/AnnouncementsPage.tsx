@@ -7,20 +7,7 @@ import { Link } from "react-router-dom";
 
 const AnnouncementsPage = () => {
   const announcements = [
-    {
-      id: 2,
-      title: "Street Sweeping Schedule Update",
-      date: "October 10, 2024",
-      content:
-        "Please note a change in the street sweeping schedule for the upcoming month. Sweeping will now occur on the second and fourth Tuesdays. Kindly ensure all vehicles are moved from the streets on these days.",
-    },
-    {
-      id: 3,
-      title: "New Online Payment Portal Available",
-      date: "September 28, 2024",
-      content:
-        "We are excited to announce the launch of our new online payment portal! You can now conveniently pay your HOA dues and other fees securely through our website. Visit the 'Contact' page for details.",
-    },
+    // All previous announcements have been removed
   ];
 
   return (
