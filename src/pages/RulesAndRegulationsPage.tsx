@@ -1,0 +1,38 @@
+"use client";
+
+import React from "react";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft } from "lucide-react";
+
+const RulesAndRegulationsPage = () => {
+  const embedSrc = "https://workdrive.zohoexternal.com/embed/uoy3hac2ac896a90d404fa9b3a84293d01495?toolbar=false&appearance=light&themecolor=green";
+
+  return (
+    <div className="container mx-auto p-4 flex flex-col items-center">
+      <div className="w-full max-w-4xl mb-6 flex justify-start">
+        <Button variant="outline" asChild>
+          <Link to="/documents">
+            <ArrowLeft className="mr-2 h-4 w-4" /> Back to Documents
+          </Link>
+        </Button>
+      </div>
+      <h1 className="text-4xl font-bold text-center mb-8">Liberty Park Rules and Regulations</h1>
+      <p className="text-lg text-center text-muted-foreground mb-10">
+        View the official Liberty Park Rules and Regulations directly in your browser.
+      </p>
+      <div className="w-full max-w-4xl aspect-video bg-gray-100 rounded-lg shadow-lg overflow-hidden">
+        <iframe
+          src={embedSrc}
+          scrolling="no"
+          frameBorder="0"
+          allowFullScreen={true}
+          className="w-full h-full"
+          title="Liberty Park Rules and Regulations"
+        ></iframe>
+      </div>
+    </div>
+  );
+};
+
+export default RulesAndRegulationsPage;

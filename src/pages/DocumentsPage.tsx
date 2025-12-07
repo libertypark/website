@@ -9,7 +9,8 @@ import { Link } from "react-router-dom"; // Import Link
 const DocumentsPage = () => {
   const documents = [
     { id: 4, title: "CC&Rs and Architectural Control Standards", description: "Covenants, Conditions, & Restrictions and Architectural Control Standards.", date: "2024-03-10", link: "/Liberty Park CCRs and Architectural Control Standards.pdf", type: "download" },
-    { id: 5, title: "Liberty Park Bylaws", description: "Official bylaws governing the Liberty Park Owners Association.", date: "2023-01-15", link: "/documents/bylaws", type: "view" }, // New document entry
+    { id: 5, title: "Liberty Park Bylaws", description: "Official bylaws governing the Liberty Park Owners Association.", date: "2023-01-15", link: "/documents/bylaws", type: "view" },
+    { id: 6, title: "Liberty Park Rules and Regulations", description: "Official rules and regulations for Liberty Park residents.", date: "2024-01-01", link: "/documents/rules-and-regulations", type: "view" }, // New document entry
   ];
 
   return (
@@ -26,7 +27,7 @@ const DocumentsPage = () => {
               {doc.type === "download" ? (
                 <FileText className="h-8 w-8 text-blue-500" />
               ) : (
-                <BookOpen className="h-8 w-8 text-purple-500" /> // Use BookOpen for viewable document
+                <BookOpen className="h-8 w-8 text-purple-500" />
               )}
               <div>
                 <CardTitle className="text-xl font-semibold">{doc.title}</CardTitle>
