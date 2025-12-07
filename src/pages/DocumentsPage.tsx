@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import { FileText, Download, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
@@ -20,27 +20,27 @@ const DocumentsPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {documents.map((doc) => (
           <Card key={doc.id} className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
-            <CardHeader className="flex flex-row items-center space-x-4">
-              {doc.type === "download" ? (
-                <FileText className="h-8 w-8 text-blue-500" />
-              ) : (
-                <BookOpen className="h-8 w-8 text-purple-500" />
-              )}
-              <div>
-                <CardTitle className="text-xl font-semibold">{doc.title}</CardTitle>
-                <CardDescription className="text-sm text-gray-500">Published: {doc.date}</CardDescription>
+            <CardContent className="flex flex-col p-6">
+              <div className="flex items-center space-x-4 mb-4">
+                {doc.type === "download" ? (
+                  <FileText className="h-8 w-8 text-blue-500" />
+                ) : (
+                  <BookOpen className="h-8 w-8 text-purple-500" />
+                )}
+                <div>
+                  <CardTitle className="text-xl font-semibold">{doc.title}</CardTitle>
+                  <CardDescription className="text-sm text-gray-500">Published: {doc.date}</CardDescription>
+                </div>
               </div>
-            </CardHeader>
-            <CardContent>
-              <p className="text-gray-700 mb-4">{doc.description}</p>
+              <p className="text-gray-700 mb-4 flex-grow">{doc.description}</p>
               {doc.type === "download" ? (
-                <Button asChild className="w-full">
+                <Button asChild className="w-full mt-auto">
                   <a href={doc.link} download>
                     <Download className="mr-2 h-4 w-4" /> Download
                   </a>
                 </Button>
               ) : (
-                <Button asChild className="w-full">
+                <Button asChild className="w-full mt-auto">
                   <Link to={doc.link}>
                     <BookOpen className="mr-2 h-4 w-4" /> View Document
                   </Link>
