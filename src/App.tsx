@@ -13,6 +13,7 @@ import CovenantsConditionsRestrictionsPage from "./pages/CovenantsConditionsRest
 import ArchitecturalControlStandardsPage from "./pages/ArchitecturalControlStandardsPage"; // New import
 import SpecialAssessmentPage from "./pages/MeetingMinutesPage"; // Updated import
 import AnnualMeetingPage from "./pages/AnnualMeetingPage"; // New import for Annual Meeting
+import MeetingMinutesPage from "./pages/MeetingMinutesPage"; // New import for Meeting Minutes
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -37,6 +38,7 @@ const App = () => (
               <Route path="/documents/architectural-standards" element={<ArchitecturalControlStandardsPage />} />
               <Route path="/announcements/special-assessment" element={<SpecialAssessmentPage />} />
               <Route path="/announcements/annual-meeting" element={<AnnualMeetingPage />} /> {/* New route */}
+              <Route path="/announcements/meeting-minutes" element={<MeetingMinutesPage />} /> {/* New route for Meeting Minutes */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>

@@ -30,6 +30,24 @@ const AnnouncementsPage = () => {
           </Card>
         ))}
         
+        {/* Meeting Minutes Card */}
+        <Card className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
+          <CardContent className="flex flex-col p-6">
+            <div className="flex items-center space-x-4 mb-4">
+              <BookOpen className="h-8 w-8 text-purple-500" />
+              <div>
+                <CardTitle className="text-xl font-semibold">Meeting Minutes</CardTitle>
+              </div>
+            </div>
+            <p className="text-gray-700 mb-4 flex-grow">View the minutes from recent community meetings.</p>
+            <Button asChild className="w-full mt-auto">
+              <Link to="/announcements/meeting-minutes">
+                <BookOpen className="mr-2 h-4 w-4" /> View Document
+              </Link>
+            </Button>
+          </CardContent>
+        </Card>
+        
         {/* 2025 Special Assessment Card */}
         <Card className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
           <CardContent className="flex flex-col p-6">
@@ -57,7 +75,7 @@ const AnnouncementsPage = () => {
                 <CardTitle className="text-xl font-semibold">2025 Annual Meeting</CardTitle>
               </div>
             </div>
-            <p className="text-gray-700 mb-4 flex-grow">View details about the 2025 annual meeting.</p>
+            <p className="text-gray-700 mb-4 flex-grow">View the minutes and details from the 2025 annual community meeting.</p>
             <Button asChild className="w-full mt-auto">
               <Link to="/announcements/annual-meeting">
                 <BookOpen className="mr-2 h-4 w-4" /> View Document
