@@ -50,18 +50,18 @@ const AnnouncementsPage = () => {
           </Card>
         ))}
         
-        {/* New Embedded Document Card */}
+        {/* Updated Embedded Document Card */}
         <Card className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
           <CardContent className="flex flex-col p-6">
             <div className="flex items-center space-x-4 mb-4">
               <BookOpen className="h-8 w-8 text-purple-500" />
               <div>
-                <CardTitle className="text-xl font-semibold">Meeting Minutes</CardTitle>
+                <CardTitle className="text-xl font-semibold">2025 Special Assessment</CardTitle>
               </div>
             </div>
-            <p className="text-gray-700 mb-4 flex-grow">View the latest meeting minutes from our community meetings.</p>
+            <p className="text-gray-700 mb-4 flex-grow">View details about the 2025 special assessment for community improvements.</p>
             <Button asChild className="w-full mt-auto">
-              <Link to="/announcements/meeting-minutes">
+              <Link to="/announcements/special-assessment">
                 <BookOpen className="mr-2 h-4 w-4" /> View Document
               </Link>
             </Button>
