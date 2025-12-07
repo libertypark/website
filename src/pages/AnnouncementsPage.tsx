@@ -12,7 +12,7 @@ const AnnouncementsPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold text-center mb-8">Community Announcements</h1>
+      <h1 className="text-4xl font-bold text-center mb-8">Announcements</h1>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {announcements.map((announcement) => (
