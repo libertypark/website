@@ -39,7 +39,7 @@ const AnnouncementsPage = () => {
                 <CardTitle className="text-xl font-semibold">October 2025 Update</CardTitle>
               </div>
             </div>
-            <p className="text-gray-700 mb-4 flex-grow">View the October 2025 community update.</p>
+            <p className="text-gray-700 mb-4 flex-grow">View the October 2025 special assessment update.</p>
             <Button asChild className="w-full mt-auto">
               <Link to="/announcements/meeting-minutes">
                 <BookOpen className="mr-2 h-4 w-4" /> View Document
