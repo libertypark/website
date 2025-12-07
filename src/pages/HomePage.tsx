@@ -13,7 +13,7 @@ const HomePage = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <Card className="text-center p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
           <CardHeader>
-            <CardTitle className="text-2xl font-semibold mb-2">Document Sharing</CardTitle>
+            <CardTitle className="text-2xl font-semibold mb-2">Documents</CardTitle>
             <CardDescription>Access important community documents, bylaws, and meeting minutes.</CardDescription>
           </CardHeader>
           <CardContent>
