@@ -1,5 +1,4 @@
 "use client";
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -12,12 +11,12 @@ import ContactPage from "./pages/ContactPage";
 import EmbeddedDocumentPage from "./pages/EmbeddedDocumentPage";
 import CovenantsConditionsRestrictionsPage from "./pages/CovenantsConditionsRestrictionsPage"; // Updated import
 import ArchitecturalControlStandardsPage from "./pages/ArchitecturalControlStandardsPage"; // New import
+import MeetingMinutesPage from "./pages/MeetingMinutesPage"; // New import
 import NotFound from "./pages/NotFound";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 const queryClient = new QueryClient();
-
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -34,7 +33,8 @@ const App = () => (
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/documents/bylaws" element={<EmbeddedDocumentPage />} />
               <Route path="/documents/ccrs" element={<CovenantsConditionsRestrictionsPage />} />
-              <Route path="/documents/architectural-standards" element={<ArchitecturalControlStandardsPage />} /> {/* New route */}
+              <Route path="/documents/architectural-standards" element={<ArchitecturalControlStandardsPage />} />
+              <Route path="/announcements/meeting-minutes" element={<MeetingMinutesPage />} /> {/* New route */}
               {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
               <Route path="*" element={<NotFound />} />
             </Routes>
@@ -45,5 +45,4 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
 );
-
 export default App;
