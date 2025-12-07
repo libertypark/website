@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const DocumentsPage = () => {
   const documents = [
-    { id: 4, title: "CC&Rs and Architectural Control Standards", description: "Covenants, Conditions, & Restrictions and Architectural Control Standards.", date: "2024-03-10", link: "/Liberty Park CCRs and Architectural Control Standards.pdf", type: "download" },
+    // Removed: { id: 4, title: "CC&Rs and Architectural Control Standards", description: "Covenants, Conditions, & Restrictions and Architectural Control Standards.", date: "2024-03-10", link: "/Liberty Park CCRs and Architectural Control Standards.pdf", type: "download" },
     { id: 5, title: "Liberty Park Bylaws", description: "Official bylaws governing the Liberty Park Owners Association.", date: "2023-01-15", link: "/documents/bylaws", type: "view" },
     { id: 6, title: "Liberty Park Rules and Regulations", description: "Official rules and regulations for Liberty Park residents.", date: "2024-01-01", link: "/documents/rules-and-regulations", type: "view" },
   ];
