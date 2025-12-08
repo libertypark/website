@@ -12,10 +12,10 @@ import { useToast } from "@/components/ui/use-toast";
 import { showError, showSuccess } from "@/utils/toast";
 
 const boardMembers = [
-  { id: "president", role: "President", name: "Susan Anderson", email: "president@libertyparkferndale.com" },
-  { id: "vice-president", role: "Vice-President", name: "Melanie Prinsen", email: "vicepresident@libertyparkferndale.com" },
-  { id: "secretary", role: "Secretary", name: "Brian Gregory", email: "secretary@libertyparkferndale.com" },
-  { id: "treasurer", role: "Treasurer", name: "Erik Slayter", email: "treasurer@libertyparkferndale.com" },
+  { id: "president", role: "President", name: "Susan Anderson" },
+  { id: "vice-president", role: "Vice-President", name: "Melanie Prinsen" },
+  { id: "secretary", role: "Secretary", name: "Brian Gregory" },
+  { id: "treasurer", role: "Treasurer", name: "Erik Slayter" },
 ];
 
 const ContactPage = () => {
@@ -99,7 +99,6 @@ const ContactPage = () => {
                         <span>
                           <span className="font-medium">{member.name}</span> - {member.role}
                         </span>
-                        <span className="text-blue-600">{member.email}</span>
                       </Label>
                     </div>
                   ))}
@@ -142,14 +141,12 @@ const ContactPage = () => {
             {selectedMembers.length > 0 && (
               <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                 <p className="text-sm text-blue-800">
-                  Your message will be sent to:
+                  Your message will be sent to the selected board members.
                 </p>
                 <ul className="mt-2 space-y-1">
                   {selectedMembers.map((member) => (
-                    <li key={member.id} className="text-sm text-blue-700 flex items-center">
-                      <span className="font-medium">{member.name}</span> 
-                      <span className="mx-2">•</span>
-                      <span>{member.email}</span>
+                    <li key={member.id} className="text-sm text-blue-700">
+                      <span className="font-medium">{member.name}</span> - {member.role}
                     </li>
                   ))}
                 </ul>
