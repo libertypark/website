@@ -23,7 +23,7 @@ const HomePage = () => {
         <Card className="text-center p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
           <CardHeader>
             <CardTitle className="text-2xl font-semibold mb-2">Announcements</CardTitle>
-            <CardDescription>Stay up-to-date with the latest announcements and notifications</CardDescription>
+            <CardDescription>Stay up-to-date with the latest announcements and notifications.</CardDescription>
           </CardHeader>
           <CardContent>
             <Button asChild className="mt-4">
