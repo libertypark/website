@@ -12,10 +12,10 @@ import { useToast } from "@/components/ui/use-toast";
 import { showError, showSuccess } from "@/utils/toast";
 
 const boardMembers = [
-  { id: "president", role: "President", name: "Susan Anderson" },
-  { id: "vice-president", role: "Vice-President", name: "Melanie Prinsen" },
-  { id: "secretary", role: "Secretary", name: "Brian Gregory" },
-  { id: "treasurer", role: "Treasurer", name: "Erik Slayter" },
+  { id: "president", role: "President", name: "Susan Anderson", email: "president@libertyparkferndale.com" },
+  { id: "vice-president", role: "Vice-President", name: "Melanie Prinsen", email: "vicepresident@libertyparkferndale.com" },
+  { id: "secretary", role: "Secretary", name: "Brian Gregory", email: "secretary@libertyparkferndale.com" },
+  { id: "treasurer", role: "Treasurer", name: "Erik Slayter", email: "treasurer@libertyparkferndale.com" },
 ];
 
 const ContactPage = () => {
@@ -33,7 +33,7 @@ const ContactPage = () => {
     );
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (selectedRecipients.length === 0) {
@@ -53,16 +53,35 @@ const ContactPage = () => {
     
     setIsSubmitting(true);
     
-    // In a real application, this would send the email
-    // For now, we'll just show a success message
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          recipients: selectedRecipients,
+          subject,
+          message,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Failed to send message.');
+      }
+
       showSuccess("Message sent successfully!");
       // Reset form
       setSelectedRecipients([]);
       setSubject("");
       setMessage("");
-    }, 1000);
+    } catch (error: any) {
+      console.error("Error sending message:", error);
+      showError(error.message || "Failed to send message. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const selectedMembers = boardMembers.filter(member => 
