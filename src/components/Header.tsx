@@ -20,6 +20,15 @@ const Header = () => {
           <Button variant="ghost" asChild className="hover:bg-gray-200 text-gray-800">
             <Link to="/contact">Contacts</Link>
           </Button>
+          <Button variant="ghost" asChild className="hover:bg-gray-200 text-gray-800">
+            <a 
+              href="https://invoice.zohosecure.com/portal/libertyparkownersassociation/signin" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              Portal
+            </a>
+          </Button>
         </nav>
       </div>
     </header>
