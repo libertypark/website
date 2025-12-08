@@ -7,29 +7,29 @@ import { Link } from "react-router-dom";
 
 const DocumentsPage = () => {
   const documents = [
-    { 
-      id: 5, 
-      title: "Liberty Park Bylaws", 
-      description: "Official bylaws governing the Liberty Park Owners Association.", 
-      date: "2025-12-01", 
-      link: "/documents/bylaws", 
-      type: "view" 
+    {
+      id: 5,
+      title: "Liberty Park Bylaws",
+      description: "Official bylaws governing the Liberty Park Owners Association.",
+      date: "2025-12-01",
+      link: "/documents/bylaws",
+      type: "view"
     },
-    { 
-      id: 6, 
-      title: "Liberty Park Owners Association Covenants, Conditions, and Restrictions (CC&Rs) and Architectural Control Standards", 
-      description: "Official covenants, conditions, restrictions, and architectural control standards for Liberty Park residents.", 
-      date: "2025-12-01", 
-      link: "/documents/ccrs", 
-      type: "view" 
+    {
+      id: 6,
+      title: "Liberty Park Owners Association Covenants, Conditions, and Restrictions (CC&Rs) and Architectural Control Standards",
+      description: "Official covenants, conditions, restrictions, and architectural control standards for Liberty Park residents.",
+      date: "2025-12-01",
+      link: "/documents/ccrs",
+      type: "view"
     },
-    { 
-      id: 7, 
-      title: "First Amendment to Declaration of Covenants", 
-      description: "The first amendment to the declaration of covenants for Liberty Park.", 
-      date: "2025-12-01", 
-      link: "/documents/architectural-standards", 
-      type: "view" 
+    {
+      id: 7,
+      title: "First Amendment to Declaration of Covenants",
+      description: "The first amendment to the declaration of covenants for Liberty Park.",
+      date: "2025-12-01",
+      link: "/documents/architectural-standards",
+      type: "view"
     },
   ];
 
@@ -42,9 +42,9 @@ const DocumentsPage = () => {
             <CardContent className="flex flex-col p-6">
               <div className="flex items-center space-x-4 mb-4">
                 {doc.type === "download" ? (
-                  <FileText className="h-8 w-8 text-blue-500" />
+                  <FileText className="h-8 w-8 text-blue-500 flex-shrink-0" />
                 ) : (
-                  <BookOpen className="h-8 w-8 text-purple-500" />
+                  <BookOpen className="h-8 w-8 text-purple-500 flex-shrink-0" />
                 )}
                 <div>
                   <CardTitle className="text-xl font-semibold">{doc.title}</CardTitle>

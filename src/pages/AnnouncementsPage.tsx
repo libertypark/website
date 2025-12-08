@@ -6,19 +6,16 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const AnnouncementsPage = () => {
-  const announcements = [
-    // All previous announcements have been removed
-  ];
-
+  const announcements = [ // All previous announcements have been removed ];
+  
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-bold text-center mb-8">Announcements</h1>
-      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {announcements.map((announcement) => (
           <Card key={announcement.id} className="shadow-md hover:shadow-lg transition-shadow duration-300">
             <CardHeader className="flex flex-row items-center space-x-4">
-              <Megaphone className="h-8 w-8 text-green-500" />
+              <Megaphone className="h-8 w-8 text-green-500 flex-shrink-0" />
               <div>
                 <CardTitle className="text-xl font-semibold">{announcement.title}</CardTitle>
                 <CardDescription className="text-sm text-gray-500">Posted: {announcement.date}</CardDescription>
@@ -29,12 +26,11 @@ const AnnouncementsPage = () => {
             </CardContent>
           </Card>
         ))}
-        
         {/* October 2025 Update Card */}
         <Card className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
           <CardContent className="flex flex-col p-6">
             <div className="flex items-center space-x-4 mb-4">
-              <BookOpen className="h-8 w-8 text-purple-500" />
+              <BookOpen className="h-8 w-8 text-purple-500 flex-shrink-0" />
               <div>
                 <CardTitle className="text-xl font-semibold">October 2025 Update</CardTitle>
               </div>
@@ -47,12 +43,11 @@ const AnnouncementsPage = () => {
             </Button>
           </CardContent>
         </Card>
-        
         {/* 2025 Special Assessment Card */}
         <Card className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
           <CardContent className="flex flex-col p-6">
             <div className="flex items-center space-x-4 mb-4">
-              <BookOpen className="h-8 w-8 text-purple-500" />
+              <BookOpen className="h-8 w-8 text-purple-500 flex-shrink-0" />
               <div>
                 <CardTitle className="text-xl font-semibold">2025 Special Assessment</CardTitle>
               </div>
@@ -65,12 +60,11 @@ const AnnouncementsPage = () => {
             </Button>
           </CardContent>
         </Card>
-
         {/* New 2025 Annual Meeting Card */}
         <Card className="flex flex-col justify-between shadow-md hover:shadow-lg transition-shadow duration-300">
           <CardContent className="flex flex-col p-6">
             <div className="flex items-center space-x-4 mb-4">
-              <BookOpen className="h-8 w-8 text-purple-500" />
+              <BookOpen className="h-8 w-8 text-purple-500 flex-shrink-0" />
               <div>
                 <CardTitle className="text-xl font-semibold">2025 Annual Meeting</CardTitle>
               </div>
