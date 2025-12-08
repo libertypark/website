@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 
 const AnnouncementsPage = () => {
-  const announcements = [ // All previous announcements have been removed ];
+  const announcements = []; // All previous announcements have been removed
   
   return (
     <div className="container mx-auto p-4">
