@@ -34,7 +34,7 @@ const HomePage = () => {
         <Card className="text-center p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
           <CardHeader>
             <CardTitle className="text-2xl font-semibold mb-2">Contacts</CardTitle>
-            <CardDescription>Find contact details for the HOA board and important services.</CardDescription>
+            <CardDescription>Find contact details for the HOA board.</CardDescription>
           </CardHeader>
           <CardContent>
             <Button asChild className="mt-4">
