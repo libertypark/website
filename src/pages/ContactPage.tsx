@@ -7,48 +7,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useToast } from "@/components/ui/use-toast";
 import { showError, showSuccess } from "@/utils/toast";
-import { useFormspark } from "@formspark/react"; // Import useFormspark
-
-const boardMembers = [
-  { id: "president", role: "President", name: "Susan Anderson" },
-  { id: "vice-president", role: "Vice-President", name: "Melanie Prinsen" },
-  { id: "secretary", role: "Secretary", name: "Brian Gregory" },
-  { id: "treasurer", role: "Treasurer", name: "Erik Slayter" },
-];
 
 const ContactPage = () => {
-  const [selectedRecipients, setSelectedRecipients] = useState<string[]>([]);
-  const [senderEmail, setSenderEmail] = useState(""); // New state for sender's email
+  const [senderEmail, setSenderEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
-
-  // Initialize Formspark hook with your Form ID
-  // IMPORTANT: Replace 'YOUR_FORMSPARK_FORM_ID' with your actual Formspark Form ID
-  // You can get this ID after creating a new form on formspree.io
-  const [submitForm, formsparkState] = useFormspark({
-    formId: "YOUR_FORMSPARK_FORM_ID", 
-  });
-
-  const toggleRecipient = (id: string) => {
-    setSelectedRecipients(prev => 
-      prev.includes(id) 
-        ? prev.filter(recipientId => recipientId !== id) 
-        : [...prev, id]
-    );
-  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (selectedRecipients.length === 0) {
-      showError("Please select at least one recipient");
-      return;
-    }
     
     if (!senderEmail.trim()) {
       showError("Please enter your email address");
@@ -68,23 +36,23 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
-      const intendedRecipientsText = selectedMembers.map(m => `${m.name} (${m.role})`).join(", ");
-
-      await submitForm({
-        _replyto: senderEmail, // Formspark uses _replyto for the sender's email
-        subject: subject,
-        message: message,
-        "Intended Recipients": intendedRecipientsText, // Include selected recipients in the email body
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ senderEmail, subject, message }),
       });
 
-      if (formsparkState.submit.status === "success") {
+      const result = await response.json();
+
+      if (response.ok) {
         showSuccess("Message sent successfully!");
-        setSelectedRecipients([]);
         setSenderEmail("");
         setSubject("");
         setMessage("");
-      } else if (formsparkState.submit.status === "error") {
-        showError("Failed to send message. Please try again.");
+      } else {
+        showError(result.message || "Failed to send message. Please try again.");
       }
     } catch (error) {
       console.error("Error sending email:", error);
@@ -93,10 +61,6 @@ const ContactPage = () => {
       setIsSubmitting(false);
     }
   };
-
-  const selectedMembers = boardMembers.filter(member => 
-    selectedRecipients.includes(member.id)
-  );
 
   return (
     <div className="container mx-auto p-4">
@@ -108,32 +72,6 @@ const ContactPage = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="space-y-4">
-                <Label>Select Recipients</Label>
-                <div className="space-y-3">
-                  {boardMembers.map((member) => (
-                    <div 
-                      key={member.id} 
-                      className="flex items-center space-x-3 p-3 border rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      <Checkbox
-                        id={member.id}
-                        checked={selectedRecipients.includes(member.id)}
-                        onCheckedChange={() => toggleRecipient(member.id)}
-                      />
-                      <Label 
-                        htmlFor={member.id} 
-                        className="flex-grow flex justify-between cursor-pointer"
-                      >
-                        <span>
-                          <span className="font-medium">{member.name}</span> - {member.role}
-                        </span>
-                      </Label>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
               <div className="space-y-2">
                 <Label htmlFor="senderEmail">Your Email</Label>
                 <Input
@@ -181,20 +119,11 @@ const ContactPage = () => {
               </div>
             </form>
 
-            {selectedMembers.length > 0 && (
-              <div className="mt-6 p-4 bg-blue-50 rounded-lg">
-                <p className="text-sm text-blue-800">
-                  Your message will be sent to the HOA's Formspree inbox, with the following board members noted as intended recipients:
-                </p>
-                <ul className="mt-2 space-y-1">
-                  {selectedMembers.map((member) => (
-                    <li key={member.id} className="text-sm text-blue-700">
-                      <span className="font-medium">{member.name}</span> - {member.role}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+              <p className="text-sm text-blue-800">
+                Your message will be sent to all four Liberty Park Owners Association board members.
+              </p>
+            </div>
           </CardContent>
         </Card>
       </div>
