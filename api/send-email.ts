@@ -4,10 +4,10 @@ import { Resend } from 'resend';
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const boardMemberEmails = [
-  "president@example.com", // Replace with actual President's email
-  "vicepresident@example.com", // Replace with actual Vice-President's email
-  "secretary@example.com", // Replace with actual Secretary's email
-  "treasurer@example.com", // Replace with actual Treasurer's email
+  "president@libertyparkferndale.com", // Replace with actual President's email
+  "vicepresident@libertyparkferndale.com", // Replace with actual Vice-President's email
+  "secretary@libertyparkferndale.com", // Replace with actual Secretary's email
+  "treasurer@libertyparkferndale.com", // Replace with actual Treasurer's email
 ];
 
 export default async function (req: VercelRequest, res: VercelResponse) {
