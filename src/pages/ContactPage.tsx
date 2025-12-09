@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 import { showError, showSuccess } from "@/utils/toast";
+import { useFormspark } from "@formspark/react"; // Import useFormspark
 
 const boardMembers = [
   { id: "president", role: "President", name: "Susan Anderson" },
@@ -20,10 +21,18 @@ const boardMembers = [
 
 const ContactPage = () => {
   const [selectedRecipients, setSelectedRecipients] = useState<string[]>([]);
+  const [senderEmail, setSenderEmail] = useState(""); // New state for sender's email
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
+
+  // Initialize Formspark hook with your Form ID
+  // IMPORTANT: Replace 'YOUR_FORMSPARK_FORM_ID' with your actual Formspark Form ID
+  // You can get this ID after creating a new form on formspree.io
+  const [submitForm, formsparkState] = useFormspark({
+    formId: "YOUR_FORMSPARK_FORM_ID", 
+  });
 
   const toggleRecipient = (id: string) => {
     setSelectedRecipients(prev => 
@@ -41,6 +50,11 @@ const ContactPage = () => {
       return;
     }
     
+    if (!senderEmail.trim()) {
+      showError("Please enter your email address");
+      return;
+    }
+
     if (!subject.trim()) {
       showError("Please enter a subject");
       return;
@@ -54,26 +68,23 @@ const ContactPage = () => {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/send-email', { // This path depends on your serverless function setup
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          recipients: selectedRecipients,
-          subject,
-          message,
-        }),
+      const intendedRecipientsText = selectedMembers.map(m => `${m.name} (${m.role})`).join(", ");
+
+      await submitForm({
+        _replyto: senderEmail, // Formspark uses _replyto for the sender's email
+        subject: subject,
+        message: message,
+        "Intended Recipients": intendedRecipientsText, // Include selected recipients in the email body
       });
 
-      if (response.ok) {
+      if (formsparkState.submit.status === "success") {
         showSuccess("Message sent successfully!");
         setSelectedRecipients([]);
+        setSenderEmail("");
         setSubject("");
         setMessage("");
-      } else {
-        const errorData = await response.json();
-        showError(errorData.message || "Failed to send message. Please try again.");
+      } else if (formsparkState.submit.status === "error") {
+        showError("Failed to send message. Please try again.");
       }
     } catch (error) {
       console.error("Error sending email:", error);
@@ -124,12 +135,25 @@ const ContactPage = () => {
               </div>
 
               <div className="space-y-2">
+                <Label htmlFor="senderEmail">Your Email</Label>
+                <Input
+                  id="senderEmail"
+                  type="email"
+                  value={senderEmail}
+                  onChange={(e) => setSenderEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
                 <Label htmlFor="subject">Subject</Label>
                 <Input
                   id="subject"
                   value={subject}
                   onChange={(e) => setSubject(e.target.value)}
                   placeholder="Enter subject"
+                  required
                 />
               </div>
 
@@ -141,6 +165,7 @@ const ContactPage = () => {
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Enter your message"
                   rows={6}
+                  required
                 />
               </div>
 
@@ -159,7 +184,7 @@ const ContactPage = () => {
             {selectedMembers.length > 0 && (
               <div className="mt-6 p-4 bg-blue-50 rounded-lg">
                 <p className="text-sm text-blue-800">
-                  Your message will be sent to the selected board members.
+                  Your message will be sent to the HOA's Formspree inbox, with the following board members noted as intended recipients:
                 </p>
                 <ul className="mt-2 space-y-1">
                   {selectedMembers.map((member) => (
