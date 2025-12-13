@@ -23,7 +23,7 @@ export default async function (req: VercelRequest, res: VercelResponse) {
 
   try {
     const { data, error } = await resend.emails.send({
-      from: 'Liberty Park Contact Form <onboarding@resend.dev>', // Replace with your verified Resend domain email
+      from: 'Liberty Park Contact Form <contact@yourdomain.com>', // IMPORTANT: Replace 'contact@yourdomain.com' with your Resend verified domain email
       to: boardMemberEmails,
       reply_to: senderEmail,
       subject: `[Liberty Park Contact] ${subject}`,
