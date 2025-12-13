@@ -16,27 +16,37 @@ export default async function (req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { senderEmail, subject, message, recipient } = req.body;
+  const { senderEmail, subject, message, recipients } = req.body; // Changed 'recipient' to 'recipients'
 
-  if (!senderEmail || !subject || !message || !recipient) {
-    return res.status(400).json({ message: 'Missing required fields: senderEmail, subject, message, recipient' });
+  if (!senderEmail || !subject || !message || !recipients || recipients.length === 0) {
+    return res.status(400).json({ message: 'Missing required fields: senderEmail, subject, message, or no recipients selected.' });
   }
 
-  const recipientEmail = boardMemberEmailsMap[recipient];
+  const recipientEmails: string[] = [];
+  const invalidRecipients: string[] = [];
 
-  if (!recipientEmail) {
-    return res.status(400).json({ message: 'Invalid recipient selected.' });
+  (recipients as string[]).forEach(role => {
+    const email = boardMemberEmailsMap[role];
+    if (email) {
+      recipientEmails.push(email);
+    } else {
+      invalidRecipients.push(role);
+    }
+  });
+
+  if (recipientEmails.length === 0) {
+    return res.status(400).json({ message: 'No valid recipients selected.' });
   }
 
   try {
     const { data, error } = await resend.emails.send({
       from: 'Liberty Park Contact Form <contact@libertyparkferndale.com>', // IMPORTANT: Replace 'contact@yourdomain.com' with your Resend verified domain email
-      to: recipientEmail, // Send to the selected recipient
+      to: recipientEmails, // Send to all selected recipients
       reply_to: senderEmail,
-      subject: `[Liberty Park Contact - ${recipient}] ${subject}`, // Include recipient in subject
+      subject: `[Liberty Park Contact] ${subject}`, // Simplified subject for multiple recipients
       html: `
         <p><strong>From:</strong> ${senderEmail}</p>
-        <p><strong>To:</strong> ${recipient}</p>
+        <p><strong>To:</strong> ${recipients.join(', ')}</p>
         <p><strong>Subject:</strong> ${subject}</p>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>

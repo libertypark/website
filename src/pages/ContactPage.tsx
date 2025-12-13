@@ -2,22 +2,37 @@
 
 import React, { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Send } from "lucide-react";
+import { Mail, Send, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"; // Import Select components
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { showError, showSuccess } from "@/utils/toast";
 
 const ContactPage = () => {
+  const boardRoles = ["President", "Vice-President", "Secretary", "Treasurer"];
+
   const [senderEmail, setSenderEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
-  const [selectedRecipient, setSelectedRecipient] = useState<string>(""); // New state for selected recipient
+  const [selectedRecipients, setSelectedRecipients] = useState<string[]>(boardRoles); // Initialize with all roles selected
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const boardRoles = ["President", "Vice-President", "Secretary", "Treasurer"];
+  const handleRecipientChange = (role: string, checked: boolean) => {
+    if (checked) {
+      setSelectedRecipients((prev) => [...prev, role]);
+    } else {
+      setSelectedRecipients((prev) => prev.filter((r) => r !== role));
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,8 +52,8 @@ const ContactPage = () => {
       return;
     }
 
-    if (!selectedRecipient) {
-      showError("Please select a recipient");
+    if (selectedRecipients.length === 0) {
+      showError("Please select at least one recipient");
       return;
     }
     
@@ -50,7 +65,7 @@ const ContactPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ senderEmail, subject, message, recipient: selectedRecipient }), // Include selectedRecipient
+        body: JSON.stringify({ senderEmail, subject, message, recipients: selectedRecipients }), // Send array of recipients
       });
 
       const result = await response.json();
@@ -60,7 +75,7 @@ const ContactPage = () => {
         setSenderEmail("");
         setSubject("");
         setMessage("");
-        setSelectedRecipient(""); // Reset recipient selection
+        setSelectedRecipients(boardRoles); // Reset to all selected after sending
       } else {
         showError(result.message || "Failed to send message. Please try again.");
       }
@@ -83,19 +98,32 @@ const ContactPage = () => {
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="recipient">Send to</Label>
-                <Select onValueChange={setSelectedRecipient} value={selectedRecipient}>
-                  <SelectTrigger id="recipient">
-                    <SelectValue placeholder="Select a board member" />
-                  </SelectTrigger>
-                  <SelectContent>
+                <Label htmlFor="recipients">Send to</Label>
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="w-full justify-between">
+                      {selectedRecipients.length === 0
+                        ? "Select recipients"
+                        : selectedRecipients.length === boardRoles.length
+                        ? "All Board Members"
+                        : selectedRecipients.join(", ")}
+                      <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent className="w-[var(--radix-dropdown-menu-trigger-width)]">
+                    <DropdownMenuLabel>Select Board Members</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
                     {boardRoles.map((role) => (
-                      <SelectItem key={role} value={role}>
+                      <DropdownMenuCheckboxItem
+                        key={role}
+                        checked={selectedRecipients.includes(role)}
+                        onCheckedChange={(checked) => handleRecipientChange(role, checked)}
+                      >
                         {role}
-                      </SelectItem>
+                      </DropdownMenuCheckboxItem>
                     ))}
-                  </SelectContent>
-                </Select>
+                  </DropdownMenuContent>
+                </DropdownMenu>
               </div>
 
               <div className="space-y-2">
@@ -147,7 +175,7 @@ const ContactPage = () => {
 
             <div className="mt-6 p-4 bg-blue-50 rounded-lg">
               <p className="text-sm text-blue-800">
-                Your message will be sent to the selected Liberty Park Owners Association board member.
+                Your message will be sent to the selected Liberty Park Owners Association board member(s).
               </p>
             </div>
           </CardContent>
