@@ -3,32 +3,40 @@ import { Resend } from 'resend';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const boardMemberEmails = [
-  "treasurer@libertyparkferndale.com", // Replace with actual President's email
-  "treasurer@libertyparkferndale.com", // Replace with actual Vice-President's email
-  "treasurer@libertyparkferndale.com", // Replace with actual Secretary's email
-  "treasurer@libertyparkferndale.com", // Replace with actual Treasurer's email
-];
+// IMPORTANT: Replace these with the actual email addresses for each board member role.
+const boardMemberEmailsMap: Record<string, string> = {
+  "President": "president@libertyparkferndale.com", // Placeholder - Update this!
+  "Vice-President": "vicepresident@libertyparkferndale.com", // Placeholder - Update this!
+  "Secretary": "secretary@libertyparkferndale.com", // Placeholder - Update this!
+  "Treasurer": "treasurer@libertyparkferndale.com",
+};
 
 export default async function (req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { senderEmail, subject, message } = req.body;
+  const { senderEmail, subject, message, recipient } = req.body;
 
-  if (!senderEmail || !subject || !message) {
-    return res.status(400).json({ message: 'Missing required fields: senderEmail, subject, message' });
+  if (!senderEmail || !subject || !message || !recipient) {
+    return res.status(400).json({ message: 'Missing required fields: senderEmail, subject, message, recipient' });
+  }
+
+  const recipientEmail = boardMemberEmailsMap[recipient];
+
+  if (!recipientEmail) {
+    return res.status(400).json({ message: 'Invalid recipient selected.' });
   }
 
   try {
     const { data, error } = await resend.emails.send({
       from: 'Liberty Park Contact Form <contact@libertyparkferndale.com>', // IMPORTANT: Replace 'contact@yourdomain.com' with your Resend verified domain email
-      to: boardMemberEmails,
+      to: recipientEmail, // Send to the selected recipient
       reply_to: senderEmail,
-      subject: `[Liberty Park Contact] ${subject}`,
+      subject: `[Liberty Park Contact - ${recipient}] ${subject}`, // Include recipient in subject
       html: `
         <p><strong>From:</strong> ${senderEmail}</p>
+        <p><strong>To:</strong> ${recipient}</p>
         <p><strong>Subject:</strong> ${subject}</p>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>

@@ -7,13 +7,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"; // Import Select components
 import { showError, showSuccess } from "@/utils/toast";
 
 const ContactPage = () => {
   const [senderEmail, setSenderEmail] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [selectedRecipient, setSelectedRecipient] = useState<string>(""); // New state for selected recipient
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const boardRoles = ["President", "Vice-President", "Secretary", "Treasurer"];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -32,6 +36,11 @@ const ContactPage = () => {
       showError("Please enter a message");
       return;
     }
+
+    if (!selectedRecipient) {
+      showError("Please select a recipient");
+      return;
+    }
     
     setIsSubmitting(true);
     
@@ -41,7 +50,7 @@ const ContactPage = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ senderEmail, subject, message }),
+        body: JSON.stringify({ senderEmail, subject, message, recipient: selectedRecipient }), // Include selectedRecipient
       });
 
       const result = await response.json();
@@ -51,6 +60,7 @@ const ContactPage = () => {
         setSenderEmail("");
         setSubject("");
         setMessage("");
+        setSelectedRecipient(""); // Reset recipient selection
       } else {
         showError(result.message || "Failed to send message. Please try again.");
       }
@@ -72,6 +82,22 @@ const ContactPage = () => {
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="recipient">Send to</Label>
+                <Select onValueChange={setSelectedRecipient} value={selectedRecipient}>
+                  <SelectTrigger id="recipient">
+                    <SelectValue placeholder="Select a board member" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {boardRoles.map((role) => (
+                      <SelectItem key={role} value={role}>
+                        {role}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="senderEmail">Your Email</Label>
                 <Input
@@ -121,7 +147,7 @@ const ContactPage = () => {
 
             <div className="mt-6 p-4 bg-blue-50 rounded-lg">
               <p className="text-sm text-blue-800">
-                Your message will be sent to all four Liberty Park Owners Association board members.
+                Your message will be sent to the selected Liberty Park Owners Association board member.
               </p>
             </div>
           </CardContent>
