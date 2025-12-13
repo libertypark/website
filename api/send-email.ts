@@ -16,27 +16,27 @@ export default async function (req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ message: 'Method Not Allowed' });
   }
 
-  const { senderEmail, subject, message, recipient } = req.body;
+  const { senderEmail, subject, message, recipient } = req.body; // recipient will now be an array of strings
 
-  if (!senderEmail || !subject || !message || !recipient) {
-    return res.status(400).json({ message: 'Missing required fields: senderEmail, subject, message, recipient' });
+  if (!senderEmail || !subject || !message || !recipient || !Array.isArray(recipient) || recipient.length === 0) {
+    return res.status(400).json({ message: 'Missing required fields: senderEmail, subject, message, or recipient (must be an array with at least one item).' });
   }
 
-  const recipientEmail = boardMemberEmailsMap[recipient];
+  const recipientEmails = recipient.map((role: string) => boardMemberEmailsMap[role]).filter(Boolean);
 
-  if (!recipientEmail) {
-    return res.status(400).json({ message: 'Invalid recipient selected.' });
+  if (recipientEmails.length === 0) {
+    return res.status(400).json({ message: 'No valid recipients selected.' });
   }
 
   try {
     const { data, error } = await resend.emails.send({
       from: 'Liberty Park Contact Form <contact@libertyparkferndale.com>', // IMPORTANT: Replace 'contact@yourdomain.com' with your Resend verified domain email
-      to: recipientEmail, // Send to the selected recipient
+      to: recipientEmails, // Send to all selected recipients
       reply_to: senderEmail,
-      subject: `[Liberty Park Contact - ${recipient}] ${subject}`, // Include recipient in subject
+      subject: `[Liberty Park Contact] ${subject}`, // Generic subject for multiple recipients
       html: `
         <p><strong>From:</strong> ${senderEmail}</p>
-        <p><strong>To:</strong> ${recipient}</p>
+        <p><strong>To:</strong> ${recipient.join(', ')}</p>
         <p><strong>Subject:</strong> ${subject}</p>
         <p><strong>Message:</strong></p>
         <p>${message.replace(/\n/g, '<br>')}</p>
